@@ -3,19 +3,13 @@ from rest_framework import serializers
 from apps.m_maps import models
 
 
-class MovieListSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = models.Movie
-		fields = ('id', 'title', 'release_year')
-
-
 class ProductionCompanyListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.ProductionCompany
 		fields = ('id', 'production_company')
 
 
-class DistributorSerializer(serializers.ModelSerializer):
+class DistributorListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.Distributor
 		fields = ('id', 'distributor')
@@ -36,3 +30,19 @@ class ActorListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.Actor
 		fields = ('id', 'actor')
+
+
+class MovieListSerializer(serializers.ModelSerializer):
+	
+	class Meta:
+		model = models.Movie
+		depth = 2
+		fields = ('id', 'title',)
+
+
+class MovieDetailedListSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = models.Movie
+		depth = 2
+		fields = '__all__'	

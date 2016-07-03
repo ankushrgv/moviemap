@@ -12,8 +12,10 @@ $(document).on('ready', function(){
         populateSearchFieldList(selectedType);
     });
 
-	$("#search-form-submit").click(function () {
-		alert("form submit clicked!!");
+	$("#search-form-submit").click(function (event) {
+		// alert("form submit clicked!!");
+		event.preventDefault();
+		searchformsubmit();
     });	
 
 });
@@ -36,7 +38,7 @@ function populateSearchFieldList(id) {
 	var url = "/searchfieldlist/" + id;
     $.get(url, function(response) {
         var i = 0;
-        // console.log(response);
+        console.log(response);
 
         if (response.length > 0) {             
         	var searchFieldOptions = [];
@@ -50,8 +52,8 @@ function populateSearchFieldList(id) {
             		searchFieldOptions.push(response[i].distributor);
 				else if(id == 'director')
             		searchFieldOptions.push(response[i].director);
-				else if(id == 'writor')
-            		searchFieldOptions.push(response[i].writor);
+				else if(id == 'writer')
+            		searchFieldOptions.push(response[i].writer);
 				else if(id == 'actor')
             		searchFieldOptions.push(response[i].actor);
 
@@ -73,17 +75,18 @@ function populateSearchFieldList(id) {
 function searchformsubmit() {
     console.log("string info submit is working!") // sanity check
 
-    // $.ajax({
-    //        type: "GET",
-    //        url: "/search_form_submit/",
-    //        data: $("#search-form").serialize(), // serializes the form's elements.
-    //        // dataType: 'json',
+    $.ajax({
+           type: "POST",
+           url: "/searchformsubmit/",
+           data: $("#search-form").serialize(), // serializes the form's elements.
+           // dataType: 'json',
 
-    //        success: function(data){
-    //             // if(alert("New Institute Added Succesfully!!")){}
-    //             // else
-    //             //     window.location.reload(); 
-    //             console.log("searched Succesfully");
-    //        }
-    // });
+           success: function(data){
+                // if(alert("New Institute Added Succesfully!!")){}
+                // else
+                //     window.location.reload(); 
+                console.log("searched Succesfully");
+                console.log(data);
+           }
+    });
 }

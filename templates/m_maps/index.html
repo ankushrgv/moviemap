@@ -6,7 +6,7 @@
 			<h2> Search By </h2>
 		</div>
 		<div class="search-form-container">
-			<form id="search-form" method="GET" action="">
+			<form id="search-form" method="POST" action="">
 				{% csrf_token %}
 				<select name="search_type" id="search-type-select">
 					<option value="title">Movie Title</option>

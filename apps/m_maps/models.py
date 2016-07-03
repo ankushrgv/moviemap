@@ -10,44 +10,44 @@ class Location(models.Model):
 	fun_facts = models.CharField(max_length=200)
 
 	def __unicode__(self):
-		return self.location
+		return u'%s' % self.location
 
 
 class ReleaseYear(models.Model):
 	year = models.CharField(max_length=4, db_index=True)
 
 	def __unicode__(self):
-		return self.year
+		return u'%s' % self.year
 
 class ProductionCompany(models.Model):
 	production_company = models.CharField(max_length=50, db_index=True)
 
 	def __unicode__(self):
-		return self.production_company
+		return u'%s' % self.production_company
 
 class Distributor(models.Model):
 	distributor = models.CharField(max_length=50, db_index=True)
 
 	def __unicode__(self):
-		return self.distributor
+		return u'%s' % self.distributor
 
 class Director(models.Model):
 	director = models.CharField(max_length=30, db_index=True)
 
 	def __unicode__(self):
-		return self.director
+		return u'%s' % self.director
 
 class Writer(models.Model):
 	writer = models.CharField(max_length=30, db_index=True)
 
 	def __unicode__(self):
-		return self.writer
+		return u'%s' % self.writer
 
 class Actor(models.Model):
 	actor = models.CharField(max_length=30, db_index=True)
 
 	def __unicode__(self):
-		return self.actor
+		return u'%s' % self.actor
 
 class Movie(models.Model):
 	title = models.CharField(max_length=80, db_index=True)
@@ -62,4 +62,4 @@ class Movie(models.Model):
 	actor3 = models.ForeignKey(Actor, blank=True, null=True, related_name='actor3')
 
 	def __unicode__(self):
-		return self.title
+		return u'%s' % self.title
