@@ -99,38 +99,46 @@ class SearchFormSubmit(APIView):
 			api_key = settings.GOOGLE_GEOCODING_API_KEY
 
 			if movies:
-				movie_details = {}
-				for movie in movies:
-					location_list = movie.location.all()
-					
-					for loc in location_list:
-						# print 'location = ', loc
+				no_of_movies =  len(serializer.data) 
+				print "serializer title = ", serializer.data[0]['title']
+
+				i = 0
+
+				while i < no_of_movies:
+					movie_location = serializer.data[i]['location']
+					no_of_locations = len(movie_location)
+					j = 0
+
+					while j < no_of_locations:
+						loc = movie_location[j]['location']
+						
+						print 'loc = ', loc
+						
 						url_context = OrderedDict()
-						url_context['address'] = loc
+						url_context['address'] = loc + " San Francisco, CA, USA"
+
+						print 'url_context address = ',url_context['address']
+
 						url_context['key'] = settings.GOOGLE_GEOCODING_API_KEY
 
 						url = base_url % urllib.urlencode(url_context)
-						print url
+						# print url
 
 						google_response = requests.get(url)
 						data = google_response.json()
 						
-						# lat_long = data['results']['location']
 						print data['results'][0]['geometry']['location']
-						# print lat_long
+						print type(data['results'][0]['geometry']['location'])
 
-			# context = urllib.urlencode(url_context)
-			# url = base_url % context
+						serializer.data[i]['location'][j]['latlong'] = data['results'][0]['geometry']['location']
+
+						j += 1
+
+					i += 1
 
 			return Response(serializer.data)
-			# return HttpResponse(
-			# 	 json.dumps({'status': 'True'})
-			# )
 
 		else:
 			return HttpResponse(
 				json.dumps({"nothing to see": "this isn't happening"})
 			)
-		
-			# content = request.POST.get
-			# print 

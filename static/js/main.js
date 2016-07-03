@@ -31,6 +31,91 @@ function initialize() {
 }
 
 
+function initialize2(response) {
+	var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+    
+    console.log(response);                
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+    map.setTilt(45);
+        
+    // Multiple Markers
+    no_of_movies = Object.keys(response).length;
+    console.log(no_of_movies);
+
+    var markers = [];
+
+    var i = 0;
+
+    for(i=0; i<no_of_movies; i++){
+
+    	console.log('entered');
+
+    	var movie_marker = []
+    	var movie_title = response[i].title;
+    	var no_of_locations = Object.keys(response[i].location).length;
+    	console.log(no_of_locations);
+    	var j = 0;
+    	
+    	for(j=0; j<no_of_locations; j++){
+    	
+    		var loc = response[i].location[j].location;
+    		var funfacts = response[i].location[j].fun_facts;
+    		var latitude = response[i].location[j].latlong.lat;
+    		var longitude = response[i].location[j].latlong.lng;
+
+    		// console.log('loc = ', loc);
+    		// console.log('funfacts = ', funfacts);
+    		// console.log('lati = ', latitude);
+    		// console.log('longi = ', longitude);
+
+
+    		movie_marker = [movie_title, loc, funfacts, latitude, longitude];
+    		// console.log(movie_marker);
+    		markers.push(movie_marker);
+    	}
+    	
+    }
+
+    console.log(markers);
+        
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][3], markers[i][4]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][1]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(12);
+        google.maps.event.removeListener(boundsListener);
+    });
+}
+
+
 function populateSearchFieldList(id) {
 	if (id == null){
 		id = 'title';
@@ -86,7 +171,8 @@ function searchformsubmit() {
                 // else
                 //     window.location.reload(); 
                 console.log("searched Succesfully");
-                console.log(data);
+                // console.log(data);
+                initialize2(data);
            }
     });
 }
