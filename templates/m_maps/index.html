@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script>
-function initialize() {
-  var mapProp = {
-    center:new google.maps.LatLng(37.773972,-122.431297),
-    zoom:12,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-</head>
+{% extends 'layout/base.html' %}
 
-<body>
-<div id="googleMap" style="width:700px;height:580px;"></div>
-</body>
+{% block layout %}
+	<div class="search-container" id="search-container">
+		<div class="heading">
+			<h2> Search By </h2>
+		</div>
+		<div class="search-form">
+			<form id="search-form" method="GET" action="">
+				{% csrf_token %}
+				<select name="search_type">
+					<option value="title">Movie Title</option>
+					<option value="production_company">Production Company</option>
+					<option value="distributor">Distributor</option>
+					<option value="director">Director</option>
+					<option value="writer">Writer</option>
+					<option value="actor">Actor</option>
+				</select>
+				<input type="text" id="search-field-box" name="searched_string" value="Search Here">
+				<button type="submit" id="search-form-submit" class="search-form-submit">Search</button>
+		</div>
+		<div class="search-results">
 
-</html> 
+		</div>
+	</div>
+	<div class="googleMap" id="googleMap">
+		
+	</div>
+{% endblock layout %} 

@@ -1,0 +1,28 @@
+{% load static from staticfiles %}
+<html>
+    <head>
+        <title>{% block title %}Movie Maps{% endblock title %}</title>
+
+        <!-- CSS Stylesheets -->
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />  
+
+        <!-- Javascript -->
+        
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        
+    </head>
+    <body>
+        {% block header %}
+            {% include 'partials/header.html' %}
+        {% endblock header %}
+
+        {% block layout %}
+
+        {% endblock layout %}
+        
+    </body>
+</html>

@@ -9,33 +9,48 @@ class Location(models.Model):
 	location = models.CharField(max_length=100)
 	fun_facts = models.CharField(max_length=200)
 
+	def __unicode__(self):
+		return self.location
+
 
 class ReleaseYear(models.Model):
-	year = models.CharField(max_length=4)
+	year = models.CharField(max_length=4, db_index=True)
 
+	def __unicode__(self):
+		return self.year
 
 class ProductionCompany(models.Model):
-	production_company = models.CharField(max_length=50)
+	production_company = models.CharField(max_length=50, db_index=True)
 
+	def __unicode__(self):
+		return self.production_company
 
 class Distributor(models.Model):
-	distributor = models.CharField(max_length=50)
+	distributor = models.CharField(max_length=50, db_index=True)
 
+	def __unicode__(self):
+		return self.distributor
 
 class Director(models.Model):
-	director = models.CharField(max_length=30)
+	director = models.CharField(max_length=30, db_index=True)
 
+	def __unicode__(self):
+		return self.director
 
 class Writer(models.Model):
-	writer = models.CharField(max_length=30)
+	writer = models.CharField(max_length=30, db_index=True)
 
+	def __unicode__(self):
+		return self.writer
 
 class Actor(models.Model):
-	actor = models.CharField(max_length=30)
+	actor = models.CharField(max_length=30, db_index=True)
 
+	def __unicode__(self):
+		return self.actor
 
 class Movie(models.Model):
-	title = models.CharField(max_length=80)
+	title = models.CharField(max_length=80, db_index=True)
 	release_year = models.ForeignKey(ReleaseYear)
 	location = models.ManyToManyField(Location)
 	production_company = models.ForeignKey(ProductionCompany)
@@ -45,3 +60,6 @@ class Movie(models.Model):
 	actor1 = models.ForeignKey(Actor, blank=True, null=True, related_name='actor1')
 	actor2 = models.ForeignKey(Actor, blank=True, null=True, related_name='actor2')
 	actor3 = models.ForeignKey(Actor, blank=True, null=True, related_name='actor3')
+
+	def __unicode__(self):
+		return self.title
