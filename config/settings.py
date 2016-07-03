@@ -126,3 +126,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+## Google API Settings
+GOOGLE_GEOCODING_API_KEY = "AIzaSyDn_finS_NkQAhUFYgyIx3Cj4qStw126ho"
+GOOGLE_GEOCODING_BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?%s"

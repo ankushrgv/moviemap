@@ -1,7 +1,9 @@
 
+from django.conf import settings
 from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from ordereddict import OrderedDict
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,6 +13,8 @@ from apps.m_maps import models
 from apps.m_maps import serializers
 
 import json
+import requests
+import urllib
 
 class Index(TemplateView):
 
@@ -59,7 +63,6 @@ class SearchFormSubmit(APIView):
 	
 	def post(self, request, format=None):
 
-		
 		if request.method == 'POST':
 
 			content = request.POST
@@ -89,8 +92,35 @@ class SearchFormSubmit(APIView):
 				print "its actor!!"
 				movies = models.Movie.objects.filter(Q(actor1__actor=content['searched_string']) | Q(actor2__actor=content['searched_string']) | Q(actor3__actor=content['searched_string']))
 			
-			print movies
+			print movies				
 			serializer = serializers.MovieDetailedListSerializer(movies, many=True)
+
+			base_url = settings.GOOGLE_GEOCODING_BASE_URL
+			api_key = settings.GOOGLE_GEOCODING_API_KEY
+
+			if movies:
+				movie_details = {}
+				for movie in movies:
+					location_list = movie.location.all()
+					
+					for loc in location_list:
+						# print 'location = ', loc
+						url_context = OrderedDict()
+						url_context['address'] = loc
+						url_context['key'] = settings.GOOGLE_GEOCODING_API_KEY
+
+						url = base_url % urllib.urlencode(url_context)
+						print url
+
+						google_response = requests.get(url)
+						data = google_response.json()
+						
+						# lat_long = data['results']['location']
+						print data['results'][0]['geometry']['location']
+						# print lat_long
+
+			# context = urllib.urlencode(url_context)
+			# url = base_url % context
 
 			return Response(serializer.data)
 			# return HttpResponse(
