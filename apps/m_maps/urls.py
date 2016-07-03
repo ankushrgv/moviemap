@@ -5,4 +5,5 @@ import views
 urlpatterns = [
     url(r'^$',views.Index.as_view(), name='index'),
     url(r'^searchfieldlist/(?P<search_type>[\w]+)$',views.SearchFieldList.as_view(), name='searchfieldlist'),
+    url(r'^/searchformsubmit/$',views.SearchFormSubmit.as_view(), name='searchformsubmit'),
 ]

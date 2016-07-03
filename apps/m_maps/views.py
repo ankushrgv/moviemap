@@ -42,3 +42,7 @@ class SearchFieldList(APIView):
 			serializer = serializers.ActorListSerializer(actors, many=True)
 		# print "movie serializer data = ",serializer.data
 		return Response(serializer.data)
+
+
+class SearchFormSubmit(APIView):
+	

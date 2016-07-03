@@ -5,10 +5,10 @@
 		<div class="heading">
 			<h2> Search By </h2>
 		</div>
-		<div class="search-form">
+		<div class="search-form-container">
 			<form id="search-form" method="GET" action="">
 				{% csrf_token %}
-				<select name="search_type">
+				<select name="search_type" id="search-type-select">
 					<option value="title">Movie Title</option>
 					<option value="production_company">Production Company</option>
 					<option value="distributor">Distributor</option>
@@ -18,6 +18,7 @@
 				</select>
 				<input type="text" id="search-field-box" name="searched_string" value="Search Here">
 				<button type="submit" id="search-form-submit" class="search-form-submit">Search</button>
+			</form>
 		</div>
 		<div class="search-results">
 
