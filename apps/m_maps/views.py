@@ -130,6 +130,7 @@ class SearchFormSubmit(APIView):
 						print data['results'][0]['geometry']['location']
 						print type(data['results'][0]['geometry']['location'])
 
+						## Epicness
 						serializer.data[i]['location'][j]['latlong'] = data['results'][0]['geometry']['location']
 
 						j += 1
