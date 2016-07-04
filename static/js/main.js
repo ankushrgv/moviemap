@@ -89,7 +89,7 @@ function initialize2(response) {
 		var funfacts = markers[i][2];
 
 		var a = '<div class="info_content">'
-		var b = "<h3>" + location + "</h3"
+		var b = "<h3>" + location + "</h3>"
 		var c = "<p>" + funfacts + "</p>"
 		var d = '</div>'
 		var e = a + b + c + d;
