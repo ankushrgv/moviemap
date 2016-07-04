@@ -68,3 +68,6 @@ temp/
 
 ## DB
 db.*
+
+## ignore static root
+static_root/

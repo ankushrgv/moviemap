@@ -3,7 +3,9 @@ MySQL-python==1.2.5
 argparse==1.2.1
 backports.shutil-get-terminal-size==1.0.0
 decorator==4.0.9
+dj-database-url==0.4.1
 djangorestframework==3.3.3
+gunicorn==19.6.0
 ipdb==0.10.0
 ipython==4.2.0
 ipython-genutils==0.1.0
@@ -17,4 +19,5 @@ requests==2.10.0
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.2.1
+whitenoise==3.2
 wsgiref==0.1.2
