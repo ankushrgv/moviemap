@@ -18,6 +18,11 @@ $(document).on('ready', function(){
 		searchformsubmit();
     });	
 
+    $("#search-field-box").click(function(event){
+        $this = $(this);
+        $this.val('');
+    });
+
 });
 
 
@@ -45,10 +50,7 @@ function initialize2(response) {
         
     // Multiple Markers
     no_of_movies = Object.keys(response).length;
-    console.log(no_of_movies);
-
     var markers = [];
-
     var i = 0;
 
     for(i=0; i<no_of_movies; i++){
@@ -68,20 +70,25 @@ function initialize2(response) {
     		var latitude = response[i].location[j].latlong.lat;
     		var longitude = response[i].location[j].latlong.lng;
 
-    		// console.log('loc = ', loc);
-    		// console.log('funfacts = ', funfacts);
-    		// console.log('lati = ', latitude);
-    		// console.log('longi = ', longitude);
-
-
     		movie_marker = [movie_title, loc, funfacts, latitude, longitude];
-    		// console.log(movie_marker);
     		markers.push(movie_marker);
     	}
     	
     }
 
     console.log(markers);
+
+
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>London Eye</h3>' +
+        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Palace of Westminster</h3>' +
+        '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
+        '</div>']
+    ];
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;

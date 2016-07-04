@@ -1,0 +1,9 @@
+@font-face{
+    font-family: 'Proxima Nova';
+    src: url("../fonts/Fortunaschwein_complete.ttf") format('truetype');
+}
+
+@font-face{
+    font-family: 'Uberlin';
+    src: url("../fonts/Uberlin.ttf") format('truetype');
+}

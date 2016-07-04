@@ -1,6 +1,8 @@
 
 body {
 	margin: 0;
+	background-color: #ededed;
+	/*font-family: Uberlin;*/
 }
 
 .header{
@@ -9,6 +11,7 @@ body {
 	/*margin-bottom: 5px;*/
 	background-color: #303f9f;
 	color: #ffffff;
+	font-family: Uberlin;
 }
 
 .navbar {
@@ -17,8 +20,9 @@ body {
 
 .header h2{
 	margin: 0;
-	padding-top: 10px;
-	height:40px;
+	padding-top: 14px;
+	height:26px;
+	font-family: Uberlin;
 }
 
 .search-container{
@@ -26,9 +30,12 @@ body {
 	width: 998px;
 	display: inline-block;
 	padding-left: 200px;
-	background-color: #3367d6;
+	background-color: #3367d6; 
 	color: #ffffff;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	-webkit-box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
+	box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
 }
 
 .heading{
@@ -39,6 +46,7 @@ body {
 .heading h3{
 	margin: 0px;
 	padding-top: 10px;
+	font-family: Uberlin;
 }
 
 .search-form-container {
@@ -46,9 +54,35 @@ body {
 	padding-top: 10px;
 }
 
+.search-form-container select, input, button{
+    height: 33px;
+    padding-left: 10px;
+    margin-right: 20px;
+    border-radius: 0;
+    border-style: none;
+}
+
 .googleMap{
 	height: 480px;
 	width: 650px;
 	display: inline-block;
 	margin-left: 30px;
+}
+
+.ui-autocomplete{
+	background-color: #ffffff;
+	width:2px;
+}
+
+.ui-autocomplete li{
+	list-style: outside none none;
+}
+
+.search-field-box{
+	color: #a6a6a6;
+}
+
+.info_content{
+	height:50px;
+	width: 120px;
 }
