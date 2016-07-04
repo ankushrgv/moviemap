@@ -2,7 +2,7 @@
 body {
 	margin: 0;
 	background-color: #ededed;
-	/*font-family: Uberlin;*/
+	font-family: "Proxima Nova", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .header{
@@ -11,7 +11,7 @@ body {
 	/*margin-bottom: 5px;*/
 	background-color: #303f9f;
 	color: #ffffff;
-	font-family: Uberlin;
+	font-family: "Uberlin", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .navbar {
@@ -22,7 +22,7 @@ body {
 	margin: 0;
 	padding-top: 14px;
 	height:26px;
-	font-family: Uberlin;
+	font-family: "Uberlin", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .search-container{
