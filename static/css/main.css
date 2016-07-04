@@ -27,8 +27,8 @@ body {
 
 .search-container{
 	height: 50px;
-	width: 1107px;
-	display: inline-block;
+	/*width: 1107px;*/
+	/*display: inline-block;*/
 	padding-left: 200px;
 	background-color: #3367d6; 
 	color: #ffffff;
