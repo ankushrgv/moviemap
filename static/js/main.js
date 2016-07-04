@@ -78,17 +78,29 @@ function initialize2(response) {
 
     console.log(markers);
 
-
     // Info Window Content
-    var infoWindowContent = [
-        ['<div class="info_content">' +
-        '<h3>London Eye</h3>' +
-        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
-        ['<div class="info_content">' +
-        '<h3>Palace of Westminster</h3>' +
-        '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
-        '</div>']
-    ];
+    var total_markers = markers.length
+    // console.log('total markers = ', total_markers);
+
+    var infoWindowContent = [];
+
+	for(i=0; i< total_markers; i++){
+		var location = markers[i][1];
+		var funfacts = markers[i][2];
+
+		var a = '<div class="info_content">'
+		var b = "<h3>" + location + "</h3"
+		var c = "<p>" + funfacts + "</p>"
+		var d = '</div>'
+		var e = a + b + c + d;
+
+		var infoElement = [e];
+		infoWindowContent.push(infoElement);
+	}
+
+    // console.log(typeof(infoWindowContent[0]));
+    console.log('infoWindowContent[0] = ', infoWindowContent[0]);
+
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -106,7 +118,7 @@ function initialize2(response) {
         // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                infoWindow.setContent(infoWindowContent[i][1]);
+                infoWindow.setContent(infoWindowContent[i][0]);
                 infoWindow.open(map, marker);
             }
         })(marker, i));
@@ -174,9 +186,6 @@ function searchformsubmit() {
            // dataType: 'json',
 
            success: function(data){
-                // if(alert("New Institute Added Succesfully!!")){}
-                // else
-                //     window.location.reload(); 
                 console.log("searched Succesfully");
                 // console.log(data);
                 initialize2(data);

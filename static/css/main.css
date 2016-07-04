@@ -70,12 +70,21 @@ body {
 }
 
 .ui-autocomplete{
-	background-color: #ffffff;
+	background-color: #bdbdbd;
 	width:2px;
+	padding-left: 8px;
+	padding-right: 8px;
+
 }
 
 .ui-autocomplete li{
-	list-style: outside none none;
+	list-style: inside none none;
+	border-bottom:0px;
+	border-top: 1px;
+	border-left: 0px;
+	border-right: 0px;
+	border-style: solid;
+	border-color: #363336;
 }
 
 .search-field-box{
@@ -83,6 +92,10 @@ body {
 }
 
 .info_content{
-	height:50px;
-	width: 120px;
+	max-height:130px;
+	max-width: 300px;
+}
+
+.ui-helper-hidden-accessible{
+	display: none;
 }
