@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Location(models.Model):
-	location = models.CharField(max_length=100)
+	location = models.CharField(max_length=150)
 	fun_facts = models.CharField(max_length=400, blank=True, null=True)
 
 	def __unicode__(self):
@@ -20,31 +20,31 @@ class ReleaseYear(models.Model):
 		return u'%s' % self.year
 
 class ProductionCompany(models.Model):
-	production_company = models.CharField(max_length=50, db_index=True)
+	production_company = models.CharField(max_length=80, db_index=True)
 
 	def __unicode__(self):
 		return u'%s' % self.production_company
 
 class Distributor(models.Model):
-	distributor = models.CharField(max_length=50, db_index=True)
+	distributor = models.CharField(max_length=80, db_index=True)
 
 	def __unicode__(self):
 		return u'%s' % self.distributor
 
 class Director(models.Model):
-	director = models.CharField(max_length=30, db_index=True)
+	director = models.CharField(max_length=80, db_index=True)
 
 	def __unicode__(self):
 		return u'%s' % self.director
 
 class Writer(models.Model):
-	writer = models.CharField(max_length=30, db_index=True)
+	writer = models.CharField(max_length=80, db_index=True)
 
 	def __unicode__(self):
 		return u'%s' % self.writer
 
 class Actor(models.Model):
-	actor = models.CharField(max_length=30, db_index=True)
+	actor = models.CharField(max_length=80, db_index=True)
 
 	def __unicode__(self):
 		return u'%s' % self.actor
