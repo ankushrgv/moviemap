@@ -60,6 +60,7 @@ function initialize2(response) {
     	var movie_marker = []
     	var movie_title = response[i].title;
     	var no_of_locations = Object.keys(response[i].location).length;
+
     	console.log(no_of_locations);
     	var j = 0;
     	
@@ -80,7 +81,7 @@ function initialize2(response) {
 
     // Info Window Content
     var total_markers = markers.length
-    console.log('total markers = ', total_markers);
+    // console.log('total markers = ', total_markers);
 
     var infoWindowContent = [];
 
@@ -97,10 +98,6 @@ function initialize2(response) {
 		var infoElement = [e];
 		infoWindowContent.push(infoElement);
 	}
-
-    // console.log(typeof(infoWindowContent[0]));
-    // console.log('infoWindowContent[0] = ', infoWindowContent[0]);
-
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -131,7 +128,7 @@ function initialize2(response) {
 
     // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(11);
+        this.setZoom(12);
         google.maps.event.removeListener(boundsListener);
     });
 }
