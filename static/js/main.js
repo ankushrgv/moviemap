@@ -44,7 +44,8 @@ function initialize2(response) {
         mapTypeId: 'roadmap'
     };
     
-    console.log(response);                
+    $("#no-location-found").hide();
+    // console.log(response);                
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
     map.setTilt(45);
