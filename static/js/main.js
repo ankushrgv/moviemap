@@ -1,6 +1,7 @@
 
 $(document).on('ready', function(){
 
+	$("#no-location-found").hide();	
 	initialize();
 	google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -82,55 +83,60 @@ function initialize2(response) {
     // Info Window Content
     var total_markers = markers.length
     // console.log('total markers = ', total_markers);
+    if (total_markers > 0){
+	    var infoWindowContent = [];
 
-    var infoWindowContent = [];
+		for(i=0; i< total_markers; i++){
+			var location = markers[i][1];
+			var funfacts = markers[i][2];
 
-	for(i=0; i< total_markers; i++){
-		var location = markers[i][1];
-		var funfacts = markers[i][2];
+			var a = '<div class="info_content">'
+			var b = "<h3>" + location + "</h3>"
+			var c = "<p>" + funfacts + "</p>"
+			var d = '</div>'
+			var e = a + b + c + d;
 
-		var a = '<div class="info_content">'
-		var b = "<h3>" + location + "</h3>"
-		var c = "<p>" + funfacts + "</p>"
-		var d = '</div>'
-		var e = a + b + c + d;
+			var infoElement = [e];
+			infoWindowContent.push(infoElement);
+		}
+	        
+	    // Display multiple markers on a map
+	    var infoWindow = new google.maps.InfoWindow(), marker, i;
+	    
+	    // Loop through our array of markers & place each one on the map  
+	    for( i = 0; i < markers.length; i++ ) {
+	        var position = new google.maps.LatLng(markers[i][3], markers[i][4]);
+	        bounds.extend(position);
+	        marker = new google.maps.Marker({
+	            position: position,
+	            map: map,
+	            title: markers[i][0]
+	        });
 
-		var infoElement = [e];
-		infoWindowContent.push(infoElement);
+	        console.log('latLong of ', i,"=", markers[i][3], markers[i][4]);
+	        
+	        // Allow each marker to have an info window    
+	        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	            return function() {
+	                infoWindow.setContent(infoWindowContent[i][0]);
+	                infoWindow.open(map, marker);
+	            }
+	        })(marker, i));
+
+	        // Automatically center the map fitting all markers on the screen
+	        map.fitBounds(bounds);
+	    }
+
+	    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+	    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+	        this.setZoom(11);
+	        google.maps.event.removeListener(boundsListener);
+	    });
 	}
-        
-    // Display multiple markers on a map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
-    
-    // Loop through our array of markers & place each one on the map  
-    for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][3], markers[i][4]);
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: markers[i][0]
-        });
-
-        console.log('latLong of ', i,"=", markers[i][3], markers[i][4]);
-        
-        // Allow each marker to have an info window    
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                infoWindow.setContent(infoWindowContent[i][0]);
-                infoWindow.open(map, marker);
-            }
-        })(marker, i));
-
-        // Automatically center the map fitting all markers on the screen
-        map.fitBounds(bounds);
-    }
-
-    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
-    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(11);
-        google.maps.event.removeListener(boundsListener);
-    });
+	else{
+		$("#no-location-found").show();
+		initialize();
+	}
 }
 
 
