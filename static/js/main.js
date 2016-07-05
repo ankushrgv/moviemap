@@ -76,11 +76,11 @@ function initialize2(response) {
     	
     }
 
-    console.log(markers);
+    // console.log(markers);
 
     // Info Window Content
     var total_markers = markers.length
-    // console.log('total markers = ', total_markers);
+    console.log('total markers = ', total_markers);
 
     var infoWindowContent = [];
 
@@ -99,7 +99,7 @@ function initialize2(response) {
 	}
 
     // console.log(typeof(infoWindowContent[0]));
-    console.log('infoWindowContent[0] = ', infoWindowContent[0]);
+    // console.log('infoWindowContent[0] = ', infoWindowContent[0]);
 
         
     // Display multiple markers on a map
@@ -114,6 +114,8 @@ function initialize2(response) {
             map: map,
             title: markers[i][0]
         });
+
+        console.log('latLong of ', i,"=", markers[i][3], markers[i][4]);
         
         // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -129,7 +131,7 @@ function initialize2(response) {
 
     // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(12);
+        this.setZoom(11);
         google.maps.event.removeListener(boundsListener);
     });
 }
@@ -142,7 +144,7 @@ function populateSearchFieldList(id) {
 	var url = "/searchfieldlist/" + id;
     $.get(url, function(response) {
         var i = 0;
-        console.log(response);
+        // console.log(response);
 
         if (response.length > 0) {             
         	var searchFieldOptions = [];

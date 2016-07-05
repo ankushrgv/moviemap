@@ -7,7 +7,7 @@ from django.db import models
 
 class Location(models.Model):
 	location = models.CharField(max_length=100)
-	fun_facts = models.CharField(max_length=200)
+	fun_facts = models.CharField(max_length=400, blank=True, null=True)
 
 	def __unicode__(self):
 		return u'%s' % self.location
