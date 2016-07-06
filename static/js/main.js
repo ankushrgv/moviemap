@@ -57,13 +57,13 @@ function initialize2(response) {
 
     for(i=0; i<no_of_movies; i++){
 
-    	console.log('entered');
+    	// console.log('entered');
 
     	var movie_marker = []
     	var movie_title = response[i].title;
     	var no_of_locations = Object.keys(response[i].location).length;
 
-    	console.log(no_of_locations);
+    	// console.log(no_of_locations);
     	var j = 0;
     	
     	for(j=0; j<no_of_locations; j++){
@@ -114,7 +114,7 @@ function initialize2(response) {
 	            title: markers[i][0]
 	        });
 
-	        console.log('latLong of ', i,"=", markers[i][3], markers[i][4]);
+	        // console.log('latLong of ', i,"=", markers[i][3], markers[i][4]);
 	        
 	        // Allow each marker to have an info window    
 	        google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -183,7 +183,7 @@ function populateSearchFieldList(id) {
 }
 
 function searchformsubmit() {
-    console.log("string info submit is working!") // sanity check
+    // console.log("string info submit is working!") // sanity check
 
     $.ajax({
            type: "POST",
@@ -192,7 +192,7 @@ function searchformsubmit() {
            // dataType: 'json',
 
            success: function(data){
-                console.log("searched Succesfully");
+                // console.log("searched Succesfully");
                 // console.log(data);
                 initialize2(data);
            }

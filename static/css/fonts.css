@@ -7,3 +7,28 @@
     font-family: 'Uberlin';
     src: url("../fonts/Uberlin.ttf") format('truetype');
 }
+
+@font-face{
+    font-family: 'SF Atarian System';
+    src: url("../fonts/SF Atarian System.ttf") format('truetype');
+}
+
+@font-face{
+    font-family: 'Cupola';
+    src: url("../fonts/CupolaSmallCaps.TTF") format('truetype');
+}
+
+@font-face{
+    font-family: 'EtharnigSc';
+    src: url("../fonts/EtharnigSc.otf") format('truetype');
+}
+
+@font-face{
+    font-family: 'BravoSC';
+    src: url("../fonts/BravoSC.otf") format('truetype');
+}
+
+@font-face{
+    font-family: 'A Love of Thunder';
+    src: url("../fonts/A Love of Thunder.ttf") format('truetype');
+}

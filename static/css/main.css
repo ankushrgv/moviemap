@@ -11,7 +11,7 @@ body {
 	/*margin-bottom: 5px;*/
 	background-color: #303f9f;
 	color: #ffffff;
-	font-family: "Uberlin", Helvetica Neue, Helvetica, Arial, sans-serif;
+	/*font-family: "SF Atarian System", Helvetica Neue, Helvetica, Arial, sans-serif;*/
 }
 
 .navbar {
@@ -20,33 +20,38 @@ body {
 
 .header h2{
 	margin: 0;
-	padding-top: 14px;
-	height:26px;
-	font-family: "Uberlin", Helvetica Neue, Helvetica, Arial, sans-serif;
+	padding-top: 2px;
+	height:40px;
+	font-family: "A Love of Thunder", Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 35px;
 }
 
 .search-container{
 	height: 50px;
-	/*width: 1107px;*/
-	/*display: inline-block;*/
-	padding-left: 200px;
 	background-color: #3367d6; 
 	color: #ffffff;
 	margin-bottom: 30px;
+	align-content: center;
 	-webkit-box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
     -moz-box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
 	box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
 }
 
 .heading{
-	width: 150px;
+	width: 100px;
 	display: inline-block;
+	margin-right: 10px
 }
 
 .heading h3{
 	margin: 0px;
 	padding-top: 10px;
-	font-family: Uberlin;
+	font-family:"Uberlin" ;
+}
+
+.inner-search-container{
+	width:770px;
+	margin: 0 auto; 
 }
 
 .search-form-container {
@@ -54,12 +59,32 @@ body {
 	padding-top: 10px;
 }
 
-.search-form-container select, input, button{
+.search-form-container select, button{
     height: 33px;
     padding-left: 10px;
     margin-right: 20px;
-    border-radius: 0;
+    /*border-radius: 0;*/
     border-style: none;
+}
+
+.search-form-container select{
+	border-radius: 0;
+}
+
+.search-form-container button{
+	border-radius: 20px;
+	background-color: #FAFAFA;
+	-webkit-box-shadow: 0px 0px 8px 2px rgba(0,4,10,1);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,4,10,1);
+	box-shadow: 0px 0px 5px 1px rgba(0,4,10,1);
+}
+
+.search-form-container input{
+    height: 33px;
+    padding-left: 20px;
+    margin-right: 20px;
+    border-style: none;
+    border-radius: 0;
 }
 
 .no-location-found {
@@ -104,10 +129,14 @@ body {
 	height: 25px;
 	padding-top: 8px;
 }
-
 .search-field-box{
-	color: #a6a6a6;
+	color: #E8E8E8;
 	width: 350px;
+	border-radius: 15px;
+	background-color: 3367d6;
+	-webkit-box-shadow: inset 0px 0px 28px -4px rgba(0,4,10,1);
+    -moz-box-shadow: inset 0px 0px 28px -4px rgba(0,4,10,1);
+	box-shadow: inset 0px 0px 28px -4px rgba(0,4,10,1);
 }
 
 .info_content{
