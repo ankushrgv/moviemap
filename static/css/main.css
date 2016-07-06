@@ -27,7 +27,7 @@ body {
 }
 
 .search-container{
-	height: 50px;
+	height: 55px;
 	background-color: #3367d6; 
 	color: #ffffff;
 	margin-bottom: 30px;
@@ -38,7 +38,7 @@ body {
 }
 
 .heading{
-	width: 100px;
+	width: 105px;
 	display: inline-block;
 	margin-right: 10px
 }
@@ -50,7 +50,7 @@ body {
 }
 
 .inner-search-container{
-	width:770px;
+	width:785px;
 	margin: 0 auto; 
 }
 
