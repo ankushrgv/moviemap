@@ -45,7 +45,7 @@ function initialize2(response) {
     };
     
     $("#no-location-found").hide();
-    // console.log(response);                
+              
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
     map.setTilt(45);
@@ -57,13 +57,9 @@ function initialize2(response) {
 
     for(i=0; i<no_of_movies; i++){
 
-    	// console.log('entered');
-
     	var movie_marker = []
     	var movie_title = response[i].title;
     	var no_of_locations = Object.keys(response[i].location).length;
-
-    	// console.log(no_of_locations);
     	var j = 0;
     	
     	for(j=0; j<no_of_locations; j++){
@@ -79,11 +75,9 @@ function initialize2(response) {
     	
     }
 
-    // console.log(markers);
-
     // Info Window Content
     var total_markers = markers.length
-    // console.log('total markers = ', total_markers);
+
     if (total_markers > 0){
 	    var infoWindowContent = [];
 
@@ -113,8 +107,6 @@ function initialize2(response) {
 	            map: map,
 	            title: markers[i][0]
 	        });
-
-	        // console.log('latLong of ', i,"=", markers[i][3], markers[i][4]);
 	        
 	        // Allow each marker to have an info window    
 	        google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -177,7 +169,7 @@ function populateSearchFieldList(id) {
 			});
             
         } else {
-            console.log("No match found");
+            console.log("No location found");
         }
     });
 }
@@ -193,8 +185,94 @@ function searchformsubmit() {
 
            success: function(data){
                 // console.log("searched Succesfully");
-                // console.log(data);
+                console.log(data);
                 initialize2(data);
-           }
+
+                $container = $('.results-content');
+
+                no_of_movies = Object.keys(data).length;
+
+                $container.html("");
+
+	            $container.append($("<h5 id='result-count'>").text(no_of_movies));
+	            if (no_of_movies == 1){
+	            	$container.append("<h5>Movie Found</h5>");
+	        	}
+	        	else {
+	        		$container.append("<h5>Movies Found</h5>");	
+	        	}
+
+	        	var f = document.createDocumentFragment();
+
+    	        var d = document.createElement('ul');
+    	        $(d).addClass('results');
+    	        $(d).attr('id','results');
+
+	            var i = 0;
+	            for(i=0; i< no_of_movies; i++){
+
+	            	var l = document.createElement('li');
+	            	$(d1).addClass('result');
+		            $(d1).attr('id','result');
+
+		            var d1 = document.createElement('div');
+		            $(d1).addClass('title');
+		            $(d1).attr('id','title');
+		            $(d1).append("<h3> Movie :</h3>");
+		            $(d1).append($("<h3 id='actor1'>").text(data[i].title));
+		            $(l).append($(d1));
+
+		            var d2 = document.createElement('div');
+		            $(d2).addClass('release-year');
+		            $(d2).attr('id','release-year');
+		            $(d2).append("<h3> Release Year :</h3>");
+		            $(d2).append($("<h3 id='year'>").text(data[i].release_year.year));
+		            $(l).append($(d2));
+
+					var d3 = document.createElement('div');
+		            $(d3).addClass('production_company');
+		            $(d3).attr('id','production_company');
+		            $(d3).append("<h3> Production Company :</h3>");
+		            $(d3).append($("<h3 id='pc'>").text(data[i].production_company.production_company));
+		            $(l).append($(d3));	            
+	            	
+	            	if (data[i].distributor != null){
+	            		no_of_distributors = Object.keys(data[i].distributor).length;
+			            
+			            var d4 = document.createElement('div');
+			            
+			            $(d4).addClass('distributor');
+			            $(d4).attr('id','distributor');
+			            $(d4).append("<h3> Distributor :</h3>");
+			            $(d4).append($("<h3 id='distri'>").text(data[i].distributor.distributor));
+			            $(l).append($(d4));
+		        	}	
+
+		            var d5 = document.createElement('div');
+		            $(d5).addClass('director');
+		            $(d5).attr('id','director');
+
+		           	no_of_directors = Object.keys(data[i].director).length;
+
+		           	if(no_of_directors > 0){
+			           	if(no_of_directors == 1){
+			           		$(d5).append("<h3> Director :</h3>");	
+			           	}
+		           		else{
+		           			$(d5).append("<h3> Directors :</h3>");
+		           		}
+		            	var j = 0;
+		            	for(j=0; j<no_of_directors; j++){
+			            	$(d5).append($("<h3 id='direc'>").text(data[i].director[j].director));
+			        	}
+			        	$(l).append($(d5));
+					}
+
+					$(d).append($(l));
+		        }
+
+	            f.appendChild(d);
+	            $container.append(f);
+            }
     });
 }

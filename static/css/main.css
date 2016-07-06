@@ -97,11 +97,45 @@ body {
 	color: #DE0025;
 }
 
-.googleMap{
-	height: 450px;
-	width: 850px;
+.search-results {
+	display: inline-table;
+	width: 350px;
+	background-color: #ffffff;
+	z-index: 1;
+	margin-left: 30px;
+}
+
+.search-results-heading{
+	margin: 0 auto;
+	width: 130px;
+}
+
+.results-content{
+	margin-left: 8px;
+}
+
+.results-content h5{
 	display: inline-block;
-	margin-left: 160px;
+	font-size: 13px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 5px;
+}
+
+.results-content h3{
+	display: inline-block;
+	font-size: 13px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 5px;
+}
+
+.googleMap{
+	height:430px;
+	width: 730px;
+	display: inline-table;
+	margin-left: 20px;
+	padding-top: 35px;
 }
 
 .ui-autocomplete{

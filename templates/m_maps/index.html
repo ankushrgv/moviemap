@@ -6,27 +6,21 @@
 			<div class="heading">
 				<h3> Search By </h3>
 			</div>
-			<div class="search-form-container">
-				<form id="search-form" method="POST" action="">
-					{% csrf_token %}
-					<select name="search_type" id="search-type-select">
-						<option value="title">Movie Title</option>
-						<option value="production_company">Production Company</option>
-						<option value="distributor">Distributor</option>
-						<option value="director">Director</option>
-						<option value="writer">Writer</option>
-						<option value="actor">Actor</option>
-					</select>
-					<input type="text" id="search-field-box" class="search-field-box" name="searched_string" value="Search Here">
-					<button type="submit" id="search-form-submit" class="search-form-submit">Search</button>
-				</form>
-			</div>
+			{% include 'partials/search_form_container.html' %}
 		</div>
 	</div>
 	<div class="no-location-found" id="no-location-found">
 		<h3> No Location Found </h3>
 	</div>
 	<div class="googleMap" id="googleMap">
-		
+
+	</div>
+	<div class="search-results" id="search-results">
+		<div class="search-results-heading" id="search-results-heading">
+			<h4>Search Results</h4>
+		</div>
+		<div class="results-content" id="results-content">
+
+		</div>
 	</div>
 {% endblock layout %} 
