@@ -30,7 +30,7 @@ body {
 	height: 55px;
 	background-color: #3367d6; 
 	color: #ffffff;
-	margin-bottom: 30px;
+	/*margin-bottom: 30px;*/
 	align-content: center;
 	-webkit-box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
     -moz-box-shadow: 0px 1px 5px 5px rgba(0,0,0,0.42);
@@ -98,11 +98,15 @@ body {
 }
 
 .search-results {
-	display: inline-table;
+	position: absolute;
+	top: 120px;
+	right: 10px;
 	width: 350px;
 	background-color: #ffffff;
-	z-index: 1;
-	margin-left: 30px;
+	margin-left: 10px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
 .search-results-heading{
@@ -131,11 +135,8 @@ body {
 }
 
 .googleMap{
-	height:430px;
-	width: 730px;
-	display: inline-table;
-	margin-left: 20px;
-	padding-top: 35px;
+	height:550px;
+	transform: translateZ(0px) translateZ(0px);
 }
 
 .ui-autocomplete{
