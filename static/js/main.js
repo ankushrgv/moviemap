@@ -85,11 +85,16 @@ function initialize2(response) {
 			var location = markers[i][1];
 			var funfacts = markers[i][2];
 
-			var a = '<div class="info_content">'
-			var b = "<h3>" + location + "</h3>"
-			var c = "<p>" + funfacts + "</p>"
-			var d = '</div>'
-			var e = a + b + c + d;
+			var a = '<div class="info_content">';
+			var b = "<h3>" + location + "</h3>";
+			var c = "<p>" + funfacts + "</p>";
+			var d = '</div>';
+			if (funfacts != null){
+				var e = a + b + c + d;
+			}
+			else{
+				var e = a + b + d;	
+			}
 
 			var infoElement = [e];
 			infoWindowContent.push(infoElement);
@@ -222,20 +227,24 @@ function searchformsubmit() {
 		            $(d1).append($("<h3 id='actor1'>").text(data[i].title));
 		            $(l).append($(d1));
 
-		            var d2 = document.createElement('div');
-		            $(d2).addClass('release-year');
-		            $(d2).attr('id','release-year');
-		            $(d2).append("<h3> Release Year :</h3>");
-		            $(d2).append($("<h3 id='year'>").text(data[i].release_year.year));
-		            $(l).append($(d2));
+		            if (data[i].release_year != null){
+			            var d2 = document.createElement('div');
+			            $(d2).addClass('release-year');
+			            $(d2).attr('id','release-year');
+			            $(d2).append("<h3> Release Year :</h3>");
+			            $(d2).append($("<h3 id='year'>").text(data[i].release_year.year));
+			            $(l).append($(d2));
+		           }
 
-					var d3 = document.createElement('div');
-		            $(d3).addClass('production_company');
-		            $(d3).attr('id','production_company');
-		            $(d3).append("<h3> Production Company :</h3>");
-		            $(d3).append($("<h3 id='pc'>").text(data[i].production_company.production_company));
-		            $(l).append($(d3));	            
-	            	
+		            if (data[i].production_company != null){
+						var d3 = document.createElement('div');
+			            $(d3).addClass('production_company');
+			            $(d3).attr('id','production_company');
+			            $(d3).append("<h3> Production Company :</h3>");
+			            $(d3).append($("<h3 id='pc'>").text(data[i].production_company.production_company));
+			            $(l).append($(d3));	            
+	            	}
+
 	            	if (data[i].distributor != null){
 	            		no_of_distributors = Object.keys(data[i].distributor).length;
 			            
@@ -246,26 +255,27 @@ function searchformsubmit() {
 			            $(d4).append("<h3> Distributor :</h3>");
 			            $(d4).append($("<h3 id='distri'>").text(data[i].distributor.distributor));
 			            $(l).append($(d4));
-		        	}	
+		        	}
+		        	if (data[i].director != null){
+			            var d5 = document.createElement('div');
+			            $(d5).addClass('director');
+			            $(d5).attr('id','director');
 
-		            var d5 = document.createElement('div');
-		            $(d5).addClass('director');
-		            $(d5).attr('id','director');
+			           	no_of_directors = Object.keys(data[i].director).length;
 
-		           	no_of_directors = Object.keys(data[i].director).length;
-
-		           	if(no_of_directors > 0){
-			           	if(no_of_directors == 1){
-			           		$(d5).append("<h3> Director :</h3>");	
-			           	}
-		           		else{
-		           			$(d5).append("<h3> Directors :</h3>");
-		           		}
-		            	var j = 0;
-		            	for(j=0; j<no_of_directors; j++){
-			            	$(d5).append($("<h3 id='direc'>").text(data[i].director[j].director));
-			        	}
-			        	$(l).append($(d5));
+			           	if(no_of_directors > 0){
+				           	if(no_of_directors == 1){
+				           		$(d5).append("<h3> Director :</h3>");	
+				           	}
+			           		else{
+			           			$(d5).append("<h3> Directors :</h3>");
+			           		}
+			            	var j = 0;
+			            	for(j=0; j<no_of_directors; j++){
+				            	$(d5).append($("<h3 id='direc'>").text(data[i].director[j].director));
+				        	}
+				        	$(l).append($(d5));
+						}
 					}
 
 					$(d).append($(l));
